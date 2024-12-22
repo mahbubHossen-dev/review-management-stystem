@@ -5,7 +5,7 @@ import { FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext)
-    console.log(user)
+    // console.log(user)
     const menuLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/services'>Services</NavLink></li>

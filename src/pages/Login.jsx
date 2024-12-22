@@ -4,7 +4,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-    const { user, userLoginWithGoogle, loginUser } = useContext(AuthContext)
+    const { user, setUser, userLoginWithGoogle, loginUser } = useContext(AuthContext)
+    
     const location = useLocation()
     const navigate = useNavigate()
     
@@ -18,6 +19,7 @@ const Login = () => {
 
         loginUser(email, password)
         .then(result => {
+            setUser(result.user)
             toast.success("Welcome back! You have successfully logged in.")
             console.log(result.user)
             navigate(`${location.state ? location.state : '/'}`)
