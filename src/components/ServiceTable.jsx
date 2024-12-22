@@ -1,19 +1,16 @@
 import React from 'react';
+import { CiEdit } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
 
-const ServiceTable = ({ service }) => {
+const ServiceTable = ({ service, idx, handleUpdate }) => {
 
     const { title, company, category, price, deadline, email } = service || {}
     console.log(title)
     return (
-        <tr>
-            <th>{title}</th>
-            <td>{company}</td>
-            <td>{category}</td>
-            <td>{deadline}</td>
-            <td>{price}</td>
-            <td>{email}</td>
-            <th>1</th>
-        </tr>
+        
+            
+            
+        
     );
 };
 
