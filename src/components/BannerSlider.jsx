@@ -1,6 +1,4 @@
 
-
-
 const BannerSlider = () => {
     return (
         <div className="carousel w-full">

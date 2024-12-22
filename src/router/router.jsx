@@ -7,6 +7,7 @@ import MyServices from "../pages/MyServices";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import MyReviews from "../pages/MyReviews";
+import PrivateLayout from "../Layout/PrivateLayout";
 
 const router = createBrowserRouter([
     {
@@ -23,15 +24,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addServices',
-                element: <AddServices />
+                element: <PrivateLayout><AddServices /></PrivateLayout>
             },
             {
                 path: '/myServices',
-                element: <MyServices />
+                element: <PrivateLayout><MyServices /></PrivateLayout>
             },
             {
                 path: '/myReviews',
-                element: <MyReviews />
+                element: <PrivateLayout><MyReviews /></PrivateLayout>
             },
             {
                 path: '/login',

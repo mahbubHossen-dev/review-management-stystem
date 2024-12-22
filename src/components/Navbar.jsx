@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
+import { FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
-
+    const {user, logOut} = useContext(AuthContext)
+    console.log(user)
     const menuLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/services'>Services</NavLink></li>
-        <li><NavLink to='/addServices'>Add Services</NavLink></li>
-        <li><NavLink to='/myServices'>My Services</NavLink></li>
-        <li><NavLink to='/myReviews'>My Reviews</NavLink></li>
+        {
+            user && <>
+                <li><NavLink to='/addServices'>Add Services</NavLink></li>
+                <li><NavLink to='/myServices'>My Services</NavLink></li>
+                <li><NavLink to='/myReviews'>My Reviews</NavLink></li>
+            </>
+        }
     </>
+
+    const handleLogout = () => {
+        logOut()
+    }
 
     return (
         <div>
@@ -44,8 +55,19 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/register' className="btn">Register</Link>
-                    <Link to='/login' className="btn">Login</Link>
+                    {
+                        user ?
+                        <div className='flex items-center gap-4'>
+                            <Link onClick={handleLogout} to='/login' className="btn">Logout</Link> 
+                            <img  className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
+                        </div>
+                        : 
+                        <div className='flex items-center gap-3'>
+                            <Link to='/register' className="btn">Register</Link>
+                            <Link to='/login' className="btn">Login</Link>
+                        </div>
+                    }
+                    
                 </div>
             </div>
         </div>
