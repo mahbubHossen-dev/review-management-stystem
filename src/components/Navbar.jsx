@@ -4,7 +4,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
-    const {user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     // console.log(user)
     const menuLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
@@ -57,17 +57,20 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user ?
-                        <div className='flex items-center gap-4'>
-                            <Link onClick={handleLogout} to='/login' className="btn">Logout</Link> 
-                            <img  className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" />
-                        </div>
-                        : 
-                        <div className='flex items-center gap-3'>
-                            <Link to='/register' className="btn">Register</Link>
-                            <Link to='/login' className="btn">Login</Link>
-                        </div>
+                            <div className='flex items-center gap-4'>
+                                <Link onClick={handleLogout} to='/login' className="btn">Logout</Link>
+                                <div className='tooltip tooltip-info tooltip-bottom' data-tip={user.email}>
+                                    <img className='w-10 h-10 rounded-full' src={user.photoURL} alt="" />
+                                </div>
+
+                            </div>
+                            :
+                            <div className='flex items-center gap-3'>
+                                <Link to='/register' className="btn">Register</Link>
+                                <Link to='/login' className="btn">Login</Link>
+                            </div>
                     }
-                    
+
                 </div>
             </div>
         </div>

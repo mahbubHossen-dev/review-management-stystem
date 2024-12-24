@@ -5,16 +5,19 @@ import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const AddReview = () => {
     const {user} = useContext(AuthContext)
     const {id} = useParams()
+    const navigate = useNavigate()
+    const location = useLocation()
     // console.log(id)
     const [startDate, setStartDate] = useState(new Date())
     const [rating, setRating] = useState(3);
-    // console.log(rating)
+    
+    console.log(location)
 
     const handleReview =async (e) => {
         
@@ -23,8 +26,9 @@ const AddReview = () => {
         const description = form.description.value;
         const reviewRating = rating;
         const deadline = startDate;
+        
 
-        const review = { service_id: id,name: user?.displayName, photo: user?.photoURL, description, reviewRating, deadline }
+        const review = { service_id: id,name: user?.displayName, email: user?.email, photo: user?.photoURL, description, reviewRating, deadline }
         console.log(review)
 
         try {
@@ -32,9 +36,10 @@ const AddReview = () => {
             console.log(data)
             if (data.insertedId) {
                 Swal.fire({
-                    title: "Service added successfully!",
+                    title: "Review added successfully!",
                     icon: "success"
                 });
+                navigate(`/service/details/${id}`)
             }
         } catch (error) {
             console.log(error)

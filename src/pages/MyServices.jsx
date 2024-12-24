@@ -6,31 +6,67 @@ import { MdDelete } from 'react-icons/md';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from 'sweetalert2'
+import { toast } from 'react-toastify'
 
 
 const MyServices = () => {
     const [startDate, setStartDate] = useState(new Date())
     const { user } = useContext(AuthContext)
     const [myServices, setMyServices] = useState([])
-    console.log(myServices)
+    const [singleService, setSingleService] = useState({})
+
+
+    const fetchAllServicesData = async () => {
+        try {
+            const { data } = await axios.get(`http://localhost:5000/services?email=${user.email}`)
+            setMyServices(data)
+            // console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
-        const fetchAllServicesData = async () => {
-            try {
-                const { data } = await axios.get(`http://localhost:5000/services?email=${user.email}`)
-                setMyServices(data)
-                console.log(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
         fetchAllServicesData()
+    }, [])
 
-    }, [user.email])
 
 
-    const handleDelete = async (id) => {
+    const handleUpdate = (id) => {
+        document.getElementById('my_modal_4').showModal()
+        fetch(`http://localhost:5000/details/${id}`)
+        .then(res => res.json())
+        .then(data => setSingleService(data))
+    }
+
+
+    const handleUpdateSubmit = async (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const photo = form.photo.value
+        const title = form.title.value
+        const company = form.company.value
+        const website = form.website.value
+        const category = form.category.value
+        const price = form.price.value
+        const deadline = startDate
+        const email = form.email.value
+        const description = form.description.value;
+        const service = { photo, title, company, website, category, price, deadline, email, description }
+
+        try {
+            await axios.put(`http://localhost:5000/serviceUpdate/${singleService._id}`, service)
+            fetchAllServicesData()
+            document.getElementById('my_modal_4').close()
+            toast.success('update Successfully')
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
+    const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -47,56 +83,21 @@ const MyServices = () => {
                     icon: "success"
                 });
 
-                fetch(`http://localhost:5000/service/${id}`,{
+                fetch(`http://localhost:5000/service/${id}`, {
                     method: 'DELETE'
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if(data.deletedCount){
-                        const filter = myServices.filter(service => service._id !== id)
-                        setMyServices(filter)
-                    }
-                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            const filter = myServices.filter(service => service._id !== id)
+                            setMyServices(filter)
 
-                // try {
-                //     const { data } = await axios.delete(`http://localhost:5000/service/${id}`)
-                //     // setMyServices(data)
-                //     console.log(data)
-                // } catch (error) {
-                //     console.log(error)
-                // }
+                        }
+                    })
+
             }
         });
-
     }
-
-
-    // const handleUpdate = async (e, id) => {
-
-    // console.log(id)
-
-    // e.preventDefault()
-    // const form = e.target;
-    // const photo = form.photo.value
-    // const title = form.title.value
-    // const company = form.company.value
-    // const website = form.website.value
-    // const category = form.category.value
-    // const price = form.price.value
-    // const deadline = startDate
-    // const email = form.email.value
-    // const description = form.description.value
-    // // const email = form.email.value
-    // const service = { photo, title, company, website, category, price, deadline, email, description }
-    // console.log(service)
-
-
-
-    // }
-
-    // const handleUpdateButton = (id) => {
-    //     console.log(id)
-    // }
 
     return (
         <div>
@@ -128,7 +129,9 @@ const MyServices = () => {
                                 <td>{service.price}</td>
                                 <td>{service.email}</td>
                                 <td>
-                                    <CiEdit className='text-xl cursor-pointer' />
+                                    <button onClick={() => handleUpdate (service._id)} className='btn'>
+                                        <CiEdit className='text-xl cursor-pointer' />
+                                    </button>
                                 </td>
                                 <td>
                                     <MdDelete onClick={() => handleDelete(service._id)} className='text-xl cursor-pointer' />
@@ -143,13 +146,13 @@ const MyServices = () => {
                         <div className="modal-box w-11/12 max-w-5xl">
 
                             <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
-                                <form className="card-body ">
+                                <form onSubmit={handleUpdateSubmit} className="card-body ">
                                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                                         <div className="form-control">
                                             {/* <label className="label">
                                                 <span className="label-text">Photo URL</span>
                                             </label> */}
-                                            <input type="url" name='photo' placeholder="photo-url" className="input input-bordered" required />
+                                            <input defaultValue={singleService.photo} type="url" name='photo' placeholder="photo-url" className="input input-bordered" required />
                                         </div>
 
                                         {/* Title */}
@@ -157,7 +160,7 @@ const MyServices = () => {
                                             {/* <label className="label">
                                                 <span className="label-text">Title</span>
                                             </label> */}
-                                            <input type="text" name='title' placeholder="title" className="input input-bordered" required />
+                                            <input defaultValue={singleService.title} type="text" name='title' placeholder="title" className="input input-bordered" required />
                                         </div>
 
                                         {/* Company Name */}
@@ -165,7 +168,7 @@ const MyServices = () => {
                                             {/* <label className="label">
                                                 <span className="label-text">Company Name</span>
                                             </label> */}
-                                            <input type="text" name='company' placeholder="company-name" className="input input-bordered" required />
+                                            <input defaultValue={singleService.company} type="text" name='company' placeholder="company-name" className="input input-bordered" required />
                                         </div>
 
                                         {/* Website URL */}
@@ -173,7 +176,7 @@ const MyServices = () => {
                                             {/* <label className="label">
                                                 <span className="label-text">Website URL</span>
                                             </label> */}
-                                            <input type="url" name='website' placeholder="website-url" className="input input-bordered" required />
+                                            <input defaultValue={singleService.website} type="url" name='website' placeholder="website-url" className="input input-bordered" required />
                                         </div>
 
                                         {/* Category */}
@@ -181,7 +184,7 @@ const MyServices = () => {
                                             {/* <label className="label">
                                                 <span className="label-text">Category</span>
                                             </label> */}
-                                            <input type="text" name='category' placeholder="category" className="input input-bordered" required />
+                                            <input defaultValue={singleService.category} type="text" name='category' placeholder="category" className="input input-bordered" required />
                                         </div>
 
                                         {/* Price */}
@@ -189,7 +192,7 @@ const MyServices = () => {
                                             {/* <label className="label">
                                                 <span className="label-text">Price</span>
                                             </label> */}
-                                            <input type="number" name='price' placeholder="price" className="input input-bordered" required />
+                                            <input defaultValue={singleService.price} type="number" name='price' placeholder="price" className="input input-bordered" required />
                                         </div>
 
                                         {/* Added date (Not as input) */}
@@ -220,7 +223,7 @@ const MyServices = () => {
                                         {/* <label className="label">
                                             <span className="label-text">Description</span>
                                         </label> */}
-                                        <textarea name='description' className="w-full textarea textarea-bordered" placeholder="Bio" required></textarea>
+                                        <textarea defaultValue={singleService.description} name='description' className="w-full textarea textarea-bordered" placeholder="Bio" required></textarea>
                                     </div>
 
 
@@ -239,7 +242,7 @@ const MyServices = () => {
                             <div className="modal-action">
                                 <form method="dialog" className=''>
                                     {/* if there is a button, it will close the modal */}
-                                    <button className="btn text-white">Close</button>
+                                    <button className="btn text-white bg-primary">Close</button>
                                 </form>
                             </div>
 

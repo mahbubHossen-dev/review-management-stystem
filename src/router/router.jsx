@@ -37,7 +37,7 @@ const router = createBrowserRouter([
                 element: <PrivateLayout><MyReviews /></PrivateLayout>
             },
             {
-                path: '/details/:id',
+                path: '/service/details/:id',
                 element: <PrivateLayout><ServiceDetails /></PrivateLayout>
             },
             {
