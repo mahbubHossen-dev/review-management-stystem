@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from 'sweetalert2'
 import { toast } from 'react-toastify'
 import { format } from 'date-fns';
+import useAxiosSecure from '../hook/useAxiosSecure';
 
 
 const MyServices = () => {
@@ -16,21 +17,15 @@ const MyServices = () => {
     const [myServices, setMyServices] = useState([])
     const [singleService, setSingleService] = useState({})
     const [search, setSearch] = useState('')
-
-    // useEffect(() => {
-    //     const fetchSearch =async () => {
-
-    //     }
-    //     fetchSearch()
-
-    // }, [search, user.email])
+    const axiosInstance = useAxiosSecure()
+    
 
 
 
     useEffect(() => {
         const fetchAllServicesData = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/services?email=${user.email}&search=${search}`, {withCredentials: true})
+                const { data } = await axiosInstance.get(`/services?email=${user.email}&search=${search}`)
                 setMyServices(data)
                 console.log(data)
             } catch (error) {
@@ -38,7 +33,7 @@ const MyServices = () => {
             }
         }
         fetchAllServicesData()
-    }, [search, user.email])
+    }, [axiosInstance, search, user.email])
 
 
     // useEffect(() => {
@@ -67,13 +62,13 @@ const MyServices = () => {
         const service = { photo, title, company, website, category, price, deadline, email, description }
 
         try {
-            const { data } = await axios.put(`http://localhost:5000/serviceUpdate/${singleService._id}`, service, {withCredentials: true})
+            const { data } = await axiosInstance.put(`/serviceUpdate/${singleService._id}`, service)
             if (data.modifiedCount) {
                 document.getElementById('my_modal_4').close()
                 toast.success('update Successfully')
 
                 try {
-                    const { data } = await axios.get(`http://localhost:5000/services?email=${user.email}&search=${search}`, {withCredentials: true})
+                    const { data } = await axiosInstance.get(`/services?email=${user.email}&search=${search}`)
                     setMyServices(data)
                     console.log(data)
                 } catch (error) {
@@ -103,7 +98,7 @@ const MyServices = () => {
                     icon: "success"
                 });
 
-                axios.delete(`http://localhost:5000/service/${id}`, {withCredentials: true})
+                axiosInstance.delete(`/service/${id}`)
                     .then(data => {
                         if (data.data.deletedCount) {
                             const filter = myServices.filter(service => service._id !== id)

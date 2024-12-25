@@ -4,10 +4,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from '../Provider/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import useAxiosSecure from '../hook/useAxiosSecure';
 
 const AddServices = () => {
     const {user} = useContext(AuthContext)
     const [startDate, setStartDate] = useState(new Date())
+    const axiosInstance = useAxiosSecure()
 
     const handleAddService =async (e) => {
         e.preventDefault()
@@ -25,7 +27,7 @@ const AddServices = () => {
         const service = {photo, title, company, website, category, price, deadline, email, description}
         
         try {
-            const {data} = await axios.post('http://localhost:5000/services', service, {withCredentials: true})
+            const {data} = await axiosInstance.post('/services', service)
             console.log(data)
             if(data.insertedId){
                 Swal.fire({

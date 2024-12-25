@@ -6,12 +6,14 @@ import ReviewCard from '../components/ReviewCard';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import { Rating } from '@smastrom/react-rating';
+import useAxiosSecure from '../hook/useAxiosSecure';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext)
     const [startDate, setStartDate] = useState(new Date())
     const [rating, setRating] = useState(0);
     const [id, setId] = useState('')
+    const axiosInstance = useAxiosSecure()
 
     const [reviews, setReviews] = useState([])
 
@@ -19,7 +21,7 @@ const MyReviews = () => {
 
         const fetchReviewsDataByEmail = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`, {withCredentials: true})
+                const { data } = await axiosInstance.get(`/all-review?email=${user?.email}`)
                 setReviews(data)
                 // console.log(data)
             } catch (error) {
@@ -28,7 +30,7 @@ const MyReviews = () => {
         }
         fetchReviewsDataByEmail()
 
-    }, [user?.email])
+    }, [axiosInstance, user?.email])
 
 
 
@@ -53,7 +55,7 @@ const MyReviews = () => {
                     icon: "success"
                 });
 
-                axios.delete(`http://localhost:5000/review/${id}`, {withCredentials: true})
+                axiosInstance.delete(`/review/${id}`,)
                     .then(data => {
                         console.log(data)
                         if (data.data.deletedCount) {
@@ -72,7 +74,6 @@ const MyReviews = () => {
         setId(id)
         setRating(reviewRating)
     }
-    console.log(rating)
     const submitUpdateReview = async (e) => {
         e.preventDefault()
         const form = e.target;
@@ -80,11 +81,11 @@ const MyReviews = () => {
         const reviewRating = rating;
         const review = { description, reviewRating }
         try {
-            const { data } = await axios.patch(`http://localhost:5000/reviewUpdate/${id}`, review, {withCredentials: true})
+            const { data } = await axiosInstance.patch(`/reviewUpdate/${id}`, review)
             console.log(data)
             if (data.modifiedCount) {
                 try {
-                    const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`, {withCredentials: true})
+                    const { data } = await axiosInstance.get(`/all-review?email=${user?.email}`)
                     setReviews(data)
                     // console.log(data)
                 } catch (error) {
