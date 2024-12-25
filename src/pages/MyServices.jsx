@@ -30,7 +30,7 @@ const MyServices = () => {
     useEffect(() => {
         const fetchAllServicesData = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/services?email=mhbabu2002@gmail.com&search=${search}`, {withCredentials: true})
+                const { data } = await axios.get(`http://localhost:5000/services?email=${user.email}&search=${search}`, {withCredentials: true})
                 setMyServices(data)
                 console.log(data)
             } catch (error) {
@@ -67,13 +67,13 @@ const MyServices = () => {
         const service = { photo, title, company, website, category, price, deadline, email, description }
 
         try {
-            const { data } = await axios.put(`http://localhost:5000/serviceUpdate/${singleService._id}`, service)
+            const { data } = await axios.put(`http://localhost:5000/serviceUpdate/${singleService._id}`, service, {withCredentials: true})
             if (data.modifiedCount) {
                 document.getElementById('my_modal_4').close()
                 toast.success('update Successfully')
 
                 try {
-                    const { data } = await axios.get(`http://localhost:5000/services?email=${user.email}&search=${search}`)
+                    const { data } = await axios.get(`http://localhost:5000/services?email=${user.email}&search=${search}`, {withCredentials: true})
                     setMyServices(data)
                     console.log(data)
                 } catch (error) {
@@ -103,12 +103,9 @@ const MyServices = () => {
                     icon: "success"
                 });
 
-                fetch(`http://localhost:5000/service/${id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
+                axios.delete(`http://localhost:5000/service/${id}`, {withCredentials: true})
                     .then(data => {
-                        if (data.deletedCount) {
+                        if (data.data.deletedCount) {
                             const filter = myServices.filter(service => service._id !== id)
                             setMyServices(filter)
 

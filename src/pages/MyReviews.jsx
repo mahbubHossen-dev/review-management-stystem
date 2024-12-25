@@ -19,7 +19,7 @@ const MyReviews = () => {
 
         const fetchReviewsDataByEmail = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`)
+                const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`, {withCredentials: true})
                 setReviews(data)
                 // console.log(data)
             } catch (error) {
@@ -53,13 +53,10 @@ const MyReviews = () => {
                     icon: "success"
                 });
 
-                fetch(`http://localhost:5000/review/${id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
+                axios.delete(`http://localhost:5000/review/${id}`, {withCredentials: true})
                     .then(data => {
                         console.log(data)
-                        if (data.deletedCount) {
+                        if (data.data.deletedCount) {
                             const filter = reviews.filter(service => service._id !== id)
                             setReviews(filter)
                         }
@@ -83,11 +80,11 @@ const MyReviews = () => {
         const reviewRating = rating;
         const review = { description, reviewRating }
         try {
-            const { data } = await axios.patch(`http://localhost:5000/reviewUpdate/${id}`, review)
+            const { data } = await axios.patch(`http://localhost:5000/reviewUpdate/${id}`, review, {withCredentials: true})
             console.log(data)
             if (data.modifiedCount) {
                 try {
-                    const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`)
+                    const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`, {withCredentials: true})
                     setReviews(data)
                     // console.log(data)
                 } catch (error) {

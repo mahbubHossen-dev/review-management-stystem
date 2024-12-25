@@ -25,7 +25,7 @@ const AddServices = () => {
         const service = {photo, title, company, website, category, price, deadline, email, description}
         
         try {
-            const {data} = await axios.post('http://localhost:5000/services', service)
+            const {data} = await axios.post('http://localhost:5000/services', service, {withCredentials: true})
             console.log(data)
             if(data.insertedId){
                 Swal.fire({
