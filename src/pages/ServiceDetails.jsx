@@ -58,7 +58,7 @@ const ServiceDetails = () => {
         const reviewRating = rating;
         const deadline = startDate;
 
-        
+
         const review = { service_id: id, service_title: service.title, name: user?.displayName, email: user?.email, photo: user?.photoURL, description, reviewRating, deadline }
         console.log(review)
 
@@ -71,6 +71,16 @@ const ServiceDetails = () => {
                     icon: "success"
                 });
                 navigate(`/service/details/${id}`)
+
+                document.getElementById('my_modal_1').close()
+
+                try {
+                    const { data } = await axios.get(`http://localhost:5000/reviews/${id}`)
+                    setServiceReviews(data)
+                    // console.log(data)
+                } catch (error) {
+                    console.log(error)
+                }
             }
         } catch (error) {
             console.log(error)
@@ -95,7 +105,7 @@ const ServiceDetails = () => {
                     <p>Category: {service.category}</p>
                     <div className="card-actions justify-end">
                         {/* <Link to={`/addReview/${service._id}`} ><button className="btn">Add Review</button></Link> */}
-                        <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button>
+                        <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>Add Review</button>
                     </div>
                 </div>
                 {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -145,7 +155,7 @@ const ServiceDetails = () => {
                 </dialog>
             </div>
             <div className='pt-12'>
-                <h1>All reviews</h1>
+                <h1>{serviceReviews.length} reviews</h1>
                 <div className='space-y-4'>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                         {

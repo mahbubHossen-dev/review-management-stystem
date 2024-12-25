@@ -1,5 +1,6 @@
 import React from 'react';
 import { Rating } from '@smastrom/react-rating'
+import { format } from "date-fns";
 
 import '@smastrom/react-rating/style.css'
 
@@ -26,7 +27,7 @@ const ReviewCard = ({ review, photoButton, prevTitle, handleDeleteReview, handle
                     {prevTitle && <p>{service_title}</p>}
                     <p>{description}</p>
                     <div className='flex justify-between items-center'>
-                        <p>{deadline}</p>
+                        <p>{format(new Date(deadline), 'P')}</p>
                         {
                             prevTitle && <div>
                                 <button onClick={() => handleUpdateReview(_id, reviewRating)} className='btn mr-4'>Edit</button>
@@ -42,7 +43,7 @@ const ReviewCard = ({ review, photoButton, prevTitle, handleDeleteReview, handle
                                 <img className='w-10 h-10 rounded-full' src={photo} alt="" />
                                 <p>{name}</p>
                             </div>
-                            <button className="btn btn-primary">Buy Now</button>
+                            
                         </div>
 
                     }

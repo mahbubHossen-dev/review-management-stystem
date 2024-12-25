@@ -60,7 +60,7 @@ const Navbar = () => {
                             <div className='flex items-center gap-4'>
                                 <Link onClick={handleLogout} to='/login' className="btn">Logout</Link>
                                 <div className='tooltip tooltip-info tooltip-bottom' data-tip={user.email}>
-                                    <img className='w-10 h-10 rounded-full' src={user.photoURL} alt="" />
+                                    <img referrerPolicy='no-referrer' className='w-10 h-10 rounded-full' src={user.photoURL} alt="" />
                                 </div>
 
                             </div>

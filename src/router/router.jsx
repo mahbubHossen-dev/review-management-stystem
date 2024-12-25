@@ -10,11 +10,13 @@ import MyReviews from "../pages/MyReviews";
 import PrivateLayout from "../Layout/PrivateLayout";
 import ServiceDetails from "../pages/ServiceDetails";
 import AddReview from "../pages/AddReview";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <MainLayout/>,
+        element: <MainLayout />,
+        errorElement: <Error />,
         children: [
             {
                 path: '/',
