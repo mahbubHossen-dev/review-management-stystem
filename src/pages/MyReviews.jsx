@@ -11,27 +11,27 @@ const MyReviews = () => {
     const { user } = useContext(AuthContext)
     const [startDate, setStartDate] = useState(new Date())
     const [rating, setRating] = useState(0);
-    const[id,setId] = useState('')
+    const [id, setId] = useState('')
 
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
-        
 
+        const fetchReviewsDataByEmail = async () => {
+            try {
+                const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`)
+                setReviews(data)
+                // console.log(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
         fetchReviewsDataByEmail()
 
-    }, [])
+    }, [user?.email])
 
 
-    const fetchReviewsDataByEmail = async () => {
-        try {
-            const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`)
-            setReviews(data)
-            // console.log(data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+
 
     // console.log(reviews)
 
@@ -76,17 +76,24 @@ const MyReviews = () => {
         setRating(reviewRating)
     }
     console.log(rating)
-    const submitUpdateReview =async (e) => {
+    const submitUpdateReview = async (e) => {
         e.preventDefault()
         const form = e.target;
         const description = form.description.value;
         const reviewRating = rating;
-        const review = {description, reviewRating}
+        const review = { description, reviewRating }
         try {
-            const {data} =await axios.patch(`http://localhost:5000/reviewUpdate/${id}`, review)
+            const { data } = await axios.patch(`http://localhost:5000/reviewUpdate/${id}`, review)
             console.log(data)
-            if(data.modifiedCount){
-                fetchReviewsDataByEmail()
+            if (data.modifiedCount) {
+                try {
+                    const { data } = await axios.get(`http://localhost:5000/all-review?email=${user?.email}`)
+                    setReviews(data)
+                    // console.log(data)
+                } catch (error) {
+                    console.log(error)
+                }
+                document.getElementById('my_modal_1').close()
             }
         } catch (error) {
             console.log(error)
@@ -110,7 +117,6 @@ const MyReviews = () => {
                     ></ReviewCard>)
                 }
             </div>
-            <button className="btn">open modal</button>
             <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
                     <form onSubmit={submitUpdateReview} className="card-body">

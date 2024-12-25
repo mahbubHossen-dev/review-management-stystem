@@ -30,7 +30,7 @@ const MyServices = () => {
     useEffect(() => {
         const fetchAllServicesData = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/services?email=${user.email}&search=${search}`)
+                const { data } = await axios.get(`http://localhost:5000/services?email=mhbabu2002@gmail.com&search=${search}`, {withCredentials: true})
                 setMyServices(data)
                 console.log(data)
             } catch (error) {

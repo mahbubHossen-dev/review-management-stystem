@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BannerSlider from '../components/BannerSlider';
 import axios from 'axios';
 import ServiceCard from '../components/ServiceCard';
+import { toast } from 'react-toastify';
 
 const Home = () => {
     const [limitedServices, setLimitedServices] = useState([])
@@ -11,9 +12,9 @@ const Home = () => {
             try {
                 const { data } = await axios.get('http://localhost:5000/limitedServices')
                 setLimitedServices(data)
-                console.log(data)
+                // console.log(data)
             } catch (error) {
-                console.log(error)
+                toast.error(error)
             }
         }
 
