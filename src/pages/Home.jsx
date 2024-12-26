@@ -5,6 +5,7 @@ import ServiceCard from '../components/ServiceCard';
 import { toast } from 'react-toastify';
 import MeetPartners from '../components/MeetPartners';
 import WhyChoose from '../components/WhyChoose';
+import Achievements from '../components/Achievements';
 
 const Home = () => {
     const [limitedServices, setLimitedServices] = useState([])
@@ -42,6 +43,8 @@ const Home = () => {
             <MeetPartners/>
 
             <WhyChoose/>
+
+            <Achievements/>
         </div>
     );
 };
