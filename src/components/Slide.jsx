@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
+import * as motion from "motion/react-client"
 const Slide = ({ image, text }) => {
   
   return (
@@ -11,9 +12,13 @@ const Slide = ({ image, text }) => {
     >
       <div className='flex items-center justify-center w-full h-full bg-gray-900/30 rounded-md'>
         <div className='text-center'>
-          <h1 className='text-3xl font-semibold text-white lg:text-4xl'>
+          <motion.h1 
+          initial={{ y: 40 }}
+          animate={{ y: -40 }}
+          transition={{ duration: 1 }}
+          className='text-3xl font-semibold text-white lg:text-4xl'>
             {text}
-          </h1>
+          </motion.h1>
           <br />
 
         </div>

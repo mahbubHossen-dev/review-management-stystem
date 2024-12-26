@@ -5,14 +5,14 @@ import * as motion from "motion/react-client"
 const ServiceCard = ({ service }) => {
     const { _id, photo, title, company, website, category, price, deadline, email, description } = service || {}
 
-
+    
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             
             transition={{
-                duration: 0.4,
+                duration: 3,
                 scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             className="card card-compact bg-base-100 shadow-xl">
