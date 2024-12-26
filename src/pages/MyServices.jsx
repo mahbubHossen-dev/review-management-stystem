@@ -18,7 +18,7 @@ const MyServices = () => {
     const [singleService, setSingleService] = useState({})
     const [search, setSearch] = useState('')
     const axiosInstance = useAxiosSecure()
-    
+
 
 
 
@@ -27,9 +27,9 @@ const MyServices = () => {
             try {
                 const { data } = await axiosInstance.get(`/services?email=${user.email}&search=${search}`)
                 setMyServices(data)
-                console.log(data)
+                
             } catch (error) {
-                console.log(error)
+                toast.error(error)
             }
         }
         fetchAllServicesData()
@@ -66,14 +66,14 @@ const MyServices = () => {
                 try {
                     const { data } = await axiosInstance.get(`/services?email=${user.email}&search=${search}`)
                     setMyServices(data)
-                    console.log(data)
+                    
                 } catch (error) {
-                    console.log(error)
+                    toast.error(error)
                 }
             }
 
         } catch (error) {
-            console.log(error)
+            toast.error(error)
         }
     }
 
@@ -150,7 +150,7 @@ const MyServices = () => {
                                 <td>{service.company}</td>
                                 <td>{service.category}</td>
                                 <td>{service.deadline && format(new Date(service.deadline), 'P')}</td>
-                                <td>{service.price}</td>
+                                <td>${service.price}</td>
                                 <td>
                                     <button onClick={() => handleUpdate(service._id)} className='btn'>
                                         <CiEdit className='text-xl cursor-pointer' />
@@ -202,13 +202,7 @@ const MyServices = () => {
                                             <input defaultValue={singleService.website} type="url" name='website' placeholder="website-url" className="input input-bordered" required />
                                         </div>
 
-                                        {/* Category */}
-                                        <div className="form-control">
-                                            {/* <label className="label">
-                                                <span className="label-text">Category</span>
-                                            </label> */}
-                                            <input defaultValue={singleService.category} type="text" name='category' placeholder="category" className="input input-bordered" required />
-                                        </div>
+                                        
 
                                         {/* Price */}
                                         <div className="form-control">
@@ -218,16 +212,8 @@ const MyServices = () => {
                                             <input defaultValue={singleService.price} type="number" name='price' placeholder="price" className="input input-bordered" required />
                                         </div>
 
-                                        {/* Added date (Not as input) */}
-                                        <div className="form-control">
-                                            {/* <label className="label">
-                                                <span className="label-text">Date</span>
-                                            </label> */}
-                                            <DatePicker
-                                                className='border p-2 rounded-md w-full'
-                                                selected={startDate}
-                                                onChange={(date) => setStartDate(date)} />
-                                        </div>
+
+
 
                                         {/* userEmail (from auth) */}
                                         <div className="form-control">
@@ -236,18 +222,44 @@ const MyServices = () => {
                                             </label> */}
                                             <input type="email" name='email' defaultValue={user?.email} disabled={true} placeholder="email" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" required />
                                         </div>
+
+                                        <div className="form-control">
+                                            {/* <label className="label">
+                                            <span className="label-text">Description</span>
+                                        </label> */}
+                                            <textarea defaultValue={singleService.description} name='description' className="w-full textarea textarea-bordered" placeholder="Bio" required></textarea>
+                                        </div>
+
+
+                                        <div className='flex flex-col gap-2 w-60'>
+                                            <label className="label ">
+                                                <span className="label-text text-gray-300">Category</span>
+                                            </label>
+                                            <select
+                                                required
+                                                name='category'
+                                                id='category'
+                                                className='border p-2 rounded-md'
+                                            >
+                                                <option value='Filter By Category' disabled>Select Category</option>
+                                                <option value='Marketing'>Marketing</option>
+                                                <option value='Food'>Food</option>
+                                                <option value='IT'>IT</option>
+                                                <option value='Design'>Design</option>
+                                                <option value='Photography'>Photography</option>
+                                                <option value='Cleaning'>Cleaning</option>
+                                                <option value='Health'>Health</option>
+                                                <option value='Event'>Event</option>
+                                                <option value='Education'>Education</option>
+                                            </select>
+                                        </div>
                                     </div>
 
 
 
                                     {/* Description */}
 
-                                    <div className="form-control">
-                                        {/* <label className="label">
-                                            <span className="label-text">Description</span>
-                                        </label> */}
-                                        <textarea defaultValue={singleService.description} name='description' className="w-full textarea textarea-bordered" placeholder="Bio" required></textarea>
-                                    </div>
+
 
 
                                     <div className="modal-action">

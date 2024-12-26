@@ -65,15 +65,7 @@ const AddReview = () => {
                     onChange={setRating}
                 />
 
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Date</span>
-                    </label>
-                    <DatePicker
-                        className='border p-2 rounded-md w-full'
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)} />
-                </div>
+                
 
                 <div className="form-control mt-6">
                     <button className="btn btn-primary">Add Review</button>

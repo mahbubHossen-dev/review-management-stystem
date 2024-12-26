@@ -9,6 +9,7 @@ import '@smastrom/react-rating/style.css'
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext)
@@ -18,15 +19,15 @@ const ServiceDetails = () => {
     const [serviceReviews, setServiceReviews] = useState([])
     const [startDate, setStartDate] = useState(new Date())
     const [rating, setRating] = useState(3);
-    console.log(service)
+    
     useEffect(() => {
         const handleSeeDetails = async () => {
             try {
                 const { data } = await axios.get(`https://reviewsystem-zeta.vercel.app/details/${id}`)
                 setService(data)
-                // console.log(data)
+                
             } catch (error) {
-                console.log(error)
+                toast.error(error)
             }
         }
 
@@ -40,9 +41,9 @@ const ServiceDetails = () => {
             try {
                 const { data } = await axios.get(`https://reviewsystem-zeta.vercel.app/reviews/${id}`)
                 setServiceReviews(data)
-                // console.log(data)
+                
             } catch (error) {
-                console.log(error)
+                toast.error(error)
             }
         }
 
@@ -60,11 +61,11 @@ const ServiceDetails = () => {
 
 
         const review = { service_id: id, service_title: service.title, name: user?.displayName, email: user?.email, photo: user?.photoURL, description, reviewRating, deadline }
-        console.log(review)
+        
 
         try {
             const { data } = await axios.post('https://reviewsystem-zeta.vercel.app/addReview', review)
-            console.log(data)
+            
             if (data.insertedId) {
                 Swal.fire({
                     title: "Review added successfully!",
@@ -77,18 +78,17 @@ const ServiceDetails = () => {
                 try {
                     const { data } = await axios.get(`https://reviewsystem-zeta.vercel.app/reviews/${id}`)
                     setServiceReviews(data)
-                    // console.log(data)
+                    
                 } catch (error) {
-                    console.log(error)
+                    toast.error(error)
                 }
             }
         } catch (error) {
-            console.log(error)
+            toast.error(error)
         }
     }
 
 
-    console.log(service.title)
     return (
         <div>
             <div className='container mx-auto py-12'>
@@ -114,22 +114,19 @@ const ServiceDetails = () => {
                                     </Link>
                                 </div>
                                 <div className="card-actions justify-end ">
-                                    {/* <Link to={`/addReview/${service._id}`} ><button className="btn">Add Review</button></Link> */}
+                                    
                                     <button className="btn border w-full flex flex-col gap-2" onClick={() => document.getElementById('my_modal_1').showModal()}>
 
                                         Add Review
                                     </button>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-                    {/* Open the modal using document.getElementById('ID').showModal() method */}
 
                     <dialog id="my_modal_1" className="modal">
                         <div className="modal-box mx-auto">
-                            <div className="mx-auto card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                            <div className="mx-auto card bg-[#1F2937] w-full max-w-sm shrink-0 shadow-2xl">
                                 <form onSubmit={handleReview} className="card-body">
                                     {/* Text area */}
                                     <div className="form-control">
@@ -146,15 +143,7 @@ const ServiceDetails = () => {
                                         onChange={setRating}
                                     />
 
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Date</span>
-                                        </label>
-                                        <DatePicker
-                                            className='border p-2 rounded-md w-full'
-                                            selected={startDate}
-                                            disabled={true} />
-                                    </div>
+                                    
 
                                     <div className="form-control mt-6">
                                         <button className="btn btn-primary">Add Review</button>

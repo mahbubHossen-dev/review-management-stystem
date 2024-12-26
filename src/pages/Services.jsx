@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ServiceCard from '../components/ServiceCard';
+import { toast } from 'react-toastify';
 
 const Services = () => {
 
@@ -13,9 +14,9 @@ const Services = () => {
             try {
                 const { data } = await axios.get(`https://reviewsystem-zeta.vercel.app/all-services?filter=${filter}`)
                 setAllServices(data)
-                console.log(data)
+                
             } catch (error) {
-                console.log(error)
+                toast.error(error)
             }
         }
 
@@ -23,11 +24,7 @@ const Services = () => {
         fetchAllServicesData()
 
     }, [filter])
-    console.log(allServices)
-
-
-
-
+    
 
     return (
         <div>

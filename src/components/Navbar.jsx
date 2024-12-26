@@ -5,7 +5,6 @@ import { FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
-    // console.log(user)
     const menuLinks = <>
         <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/'>Home</NavLink></li>
         <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/services'>Services</NavLink></li>

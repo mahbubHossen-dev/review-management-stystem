@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import { Rating } from '@smastrom/react-rating';
 import useAxiosSecure from '../hook/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext)
@@ -23,19 +24,14 @@ const MyReviews = () => {
             try {
                 const { data } = await axiosInstance.get(`/all-review?email=${user?.email}`)
                 setReviews(data)
-                // console.log(data)
+                
             } catch (error) {
-                console.log(error)
+                toast.error(error)
             }
         }
         fetchReviewsDataByEmail()
 
     }, [axiosInstance, user?.email])
-
-
-
-
-    // console.log(reviews)
 
 
     const handleDeleteReview = (id) => {
@@ -57,7 +53,6 @@ const MyReviews = () => {
 
                 axiosInstance.delete(`/review/${id}`,)
                     .then(data => {
-                        console.log(data)
                         if (data.data.deletedCount) {
                             const filter = reviews.filter(service => service._id !== id)
                             setReviews(filter)
@@ -69,7 +64,6 @@ const MyReviews = () => {
 
 
     const handleUpdateReview = (id, reviewRating) => {
-        console.log(id)
         document.getElementById('my_modal_1').showModal()
         setId(id)
         setRating(reviewRating)
@@ -82,23 +76,21 @@ const MyReviews = () => {
         const review = { description, reviewRating }
         try {
             const { data } = await axiosInstance.patch(`/reviewUpdate/${id}`, review)
-            console.log(data)
+            
             if (data.modifiedCount) {
                 try {
                     const { data } = await axiosInstance.get(`/all-review?email=${user?.email}`)
                     setReviews(data)
-                    // console.log(data)
+                    
                 } catch (error) {
-                    console.log(error)
+                    toast.error(error)
                 }
                 document.getElementById('my_modal_1').close()
             }
         } catch (error) {
-            console.log(error)
+            toast.error(error)
         }
 
-        console.log('click')
-        console.log(id)
     }
 
     return (

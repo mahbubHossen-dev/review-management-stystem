@@ -18,7 +18,6 @@ const ServiceCard = ({ service }) => {
                 <h2 className="card-title text-[#374151]">{title}</h2>
                 <p className='text-[#1F2937]'>${price}</p>
                 <p className='text-[#1F2937]'>{description}</p>
-                <p className='text-[#1F2937]'>Category: {category}</p>
                 <div className="card-actions justify-end">
                     <Link to={`/service/details/${_id}`}><button className="btn btn-primary">See Details</button></Link>
                 </div>

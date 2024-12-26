@@ -15,7 +15,7 @@ const Home = () => {
             try {
                 const { data } = await axios.get('https://reviewsystem-zeta.vercel.app/limitedServices')
                 setLimitedServices(data)
-                // console.log(data)
+                
             } catch (error) {
                 toast.error(error)
             }
@@ -25,7 +25,7 @@ const Home = () => {
 
     }, [])
 
-    // console.log(limitedServices)
+    
 
     return (
         <div>

@@ -5,6 +5,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../hook/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 const AddServices = () => {
     const { user } = useContext(AuthContext)
@@ -28,7 +29,7 @@ const AddServices = () => {
 
         try {
             const { data } = await axiosInstance.post('/services', service)
-            console.log(data)
+            
             if (data.insertedId) {
                 Swal.fire({
                     title: "Service added successfully!",
@@ -36,7 +37,7 @@ const AddServices = () => {
                 });
             }
         } catch (error) {
-            console.log(error)
+            toast.error(error)
         }
     }
 
@@ -47,7 +48,7 @@ const AddServices = () => {
                 <div className=' grid grid-cols-1 lg:grid-cols-2 gap-4'>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-gray-300">Photo URL</span>
+                            <span className="label-text text-gray-300">Photo Image URL</span>
                         </label>
                         <input type="url" name='photo' placeholder="photo-url" className="input input-bordered" required />
                     </div>
@@ -116,7 +117,7 @@ const AddServices = () => {
                             id='category'
                             className='border p-2 rounded-md'
                         >
-                            <option value='Filter By Category'>Select Category</option>
+                            <option value='Filter By Category' disabled>Select Category</option>
                             <option value='Marketing'>Marketing</option>
                             <option value='Food'>Food</option>
                             <option value='IT'>IT</option>

@@ -5,12 +5,7 @@ import { format } from "date-fns";
 import '@smastrom/react-rating/style.css'
 
 const ReviewCard = ({ review, photoButton, prevTitle, handleDeleteReview, handleUpdateReview }) => {
-    // console.log(photo)
     const { _id, reviewRating, description, photo, name, deadline, service_title } = review || {}
-
-
-
-
 
     return (
         <div className=''>
