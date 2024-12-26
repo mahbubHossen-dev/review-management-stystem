@@ -13,7 +13,7 @@ const ReviewCard = ({ review, photoButton, prevTitle, handleDeleteReview, handle
 
 
     return (
-        <div>
+        <div className=''>
 
             <div className="card bg-base-100 shadow-xl border ">
                 <div className="card-body space-y-3">

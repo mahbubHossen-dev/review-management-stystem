@@ -91,9 +91,8 @@ const ServiceDetails = () => {
     console.log(service.title)
     return (
         <div>
-            <div className='max-w-6xl mx-auto py-12'>
+            <div className='container mx-auto py-12'>
                 <div className="card card-compact  bg-[#FFFFFF] shadow-xl">
-
                     <div className='md:flex gap-4 items-center'>
                         <figure>
                             <img
@@ -107,7 +106,7 @@ const ServiceDetails = () => {
                             <p>${service.price}</p>
                             <p>{service.description}</p>
                             <p>{service.category} Category</p>
-                            <div className='flex gap-4 items-center'>
+                            <div className='md:flex gap-4 items-center'>
                                 <div className='border p-4 rounded-md'>
                                     <Link to={service.website} target='_blank' className=''>
                                         <p className='text-xl font-500'>{service.website}</p>

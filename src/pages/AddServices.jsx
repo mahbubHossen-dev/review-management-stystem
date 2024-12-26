@@ -42,7 +42,7 @@ const AddServices = () => {
 
     return (
         <div>
-            <div className="card bg-[#506585] w-full shrink-0 shadow-xl max-w-6xl mx-auto my-12">
+            <div className="card bg-[#506585] w-full shrink-0 shadow-xl container mx-auto my-12">
             <form onSubmit={handleAddService} className="card-body ">
                 <div className=' grid grid-cols-1 lg:grid-cols-2 gap-4'>
                     <div className="form-control">

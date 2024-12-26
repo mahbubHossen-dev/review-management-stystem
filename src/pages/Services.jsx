@@ -31,7 +31,7 @@ const Services = () => {
 
     return (
         <div>
-            <div className='max-w-6xl mx-auto'>
+            <div className='container mx-auto'>
                 <div className='flex flex-col gap-2 w-60 my-12 mx-auto'>
                     <select
                         onChange={e => setFilter(e.target.value)}

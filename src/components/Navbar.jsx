@@ -24,7 +24,7 @@ const Navbar = () => {
 
     return (
         <div className='bg-[#1F2937] text-[#E5E7EB]'>
-            <div className="container md:max-w-7xl mx-auto navbar bg-[#1F2937]">
+            <div className="md:max-w-7xl mx-auto navbar bg-[#1F2937]">
                 <div className="navbar-start">
                     <div className="dropdown z-10">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,7 +47,7 @@ const Navbar = () => {
                             {menuLinks}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-2xl italic">RateMate</a>
+                    <a className="btn btn-ghost md:text-2xl italic">RateMate</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

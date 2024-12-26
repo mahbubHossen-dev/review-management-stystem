@@ -102,8 +102,8 @@ const MyReviews = () => {
     }
 
     return (
-        <div>
-            <div className='space-y-3 max-w-2xl mx-auto'>
+        <div className='bg-base-300'>
+            <div className='space-y-3 max-w-2xl mx-auto py-12'>
                 {
                     reviews.map(review => <ReviewCard
                         handleDeleteReview={handleDeleteReview}

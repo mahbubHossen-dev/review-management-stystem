@@ -110,7 +110,7 @@ const MyServices = () => {
     return (
         <div>
 
-            <div className="overflow-x-auto  max-w-6xl mx-auto my-12">
+            <div className="overflow-x-auto  container mx-auto my-12">
                 <div className='flex justify-end mr-8 mb-2'>
                     <div className='w-72 '>
                         <label className="input input-bordered flex items-center gap-2">

@@ -3,6 +3,8 @@ import BannerSlider from '../components/BannerSlider';
 import axios from 'axios';
 import ServiceCard from '../components/ServiceCard';
 import { toast } from 'react-toastify';
+import MeetPartners from '../components/MeetPartners';
+import WhyChoose from '../components/WhyChoose';
 
 const Home = () => {
     const [limitedServices, setLimitedServices] = useState([])
@@ -28,7 +30,7 @@ const Home = () => {
         <div>
             <BannerSlider></BannerSlider>
 
-            <div className='p-4 md:p-0 max-w-6xl mx-auto'>
+            <div className='container mx-auto'>
                 <h1 className='text-3xl font-medium my-6'>Our Services</h1>
                 <div className='grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-12'>
                     {
@@ -36,6 +38,10 @@ const Home = () => {
                     }
                 </div>
             </div>
+
+            <MeetPartners/>
+
+            <WhyChoose/>
         </div>
     );
 };
