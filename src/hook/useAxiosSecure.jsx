@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://reviewsystem-zeta.vercel.app',
+    
     withCredentials: true
 })
 

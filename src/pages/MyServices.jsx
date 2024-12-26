@@ -42,7 +42,7 @@ const MyServices = () => {
 
     const handleUpdate = (id) => {
         document.getElementById('my_modal_4').showModal()
-        fetch(`http://localhost:5000/details/${id}`)
+        fetch(`https://reviewsystem-zeta.vercel.app/details/${id}`)
             .then(res => res.json())
             .then(data => setSingleService(data))
     }

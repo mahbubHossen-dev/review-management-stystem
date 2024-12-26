@@ -22,7 +22,7 @@ const ServiceDetails = () => {
     useEffect(() => {
         const handleSeeDetails = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/details/${id}`)
+                const { data } = await axios.get(`https://reviewsystem-zeta.vercel.app/details/${id}`)
                 setService(data)
                 // console.log(data)
             } catch (error) {
@@ -38,7 +38,7 @@ const ServiceDetails = () => {
     useEffect(() => {
         const handleSeeDetails = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/reviews/${id}`)
+                const { data } = await axios.get(`https://reviewsystem-zeta.vercel.app/reviews/${id}`)
                 setServiceReviews(data)
                 // console.log(data)
             } catch (error) {
@@ -63,7 +63,7 @@ const ServiceDetails = () => {
         console.log(review)
 
         try {
-            const { data } = await axios.post('http://localhost:5000/addReview', review)
+            const { data } = await axios.post('https://reviewsystem-zeta.vercel.app/addReview', review)
             console.log(data)
             if (data.insertedId) {
                 Swal.fire({
@@ -75,7 +75,7 @@ const ServiceDetails = () => {
                 document.getElementById('my_modal_1').close()
 
                 try {
-                    const { data } = await axios.get(`http://localhost:5000/reviews/${id}`)
+                    const { data } = await axios.get(`https://reviewsystem-zeta.vercel.app/reviews/${id}`)
                     setServiceReviews(data)
                     // console.log(data)
                 } catch (error) {

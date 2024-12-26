@@ -11,7 +11,7 @@ const Services = () => {
         const fetchAllServicesData = async () => {
 
             try {
-                const { data } = await axios.get(`http://localhost:5000/all-services?filter=${filter}`)
+                const { data } = await axios.get(`https://reviewsystem-zeta.vercel.app/all-services?filter=${filter}`)
                 setAllServices(data)
                 console.log(data)
             } catch (error) {

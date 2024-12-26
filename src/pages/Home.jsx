@@ -10,7 +10,7 @@ const Home = () => {
     useEffect(() => {
         const fetchAllServicesData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/limitedServices')
+                const { data } = await axios.get('https://reviewsystem-zeta.vercel.app/limitedServices')
                 setLimitedServices(data)
                 // console.log(data)
             } catch (error) {

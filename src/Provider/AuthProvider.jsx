@@ -33,12 +33,12 @@ const AuthProvider = ({ children }) => {
 
                 const email = currUser?.email;
 
-                axios.post('http://localhost:5000/jwt', { email }, {withCredentials: true})
+                axios.post('https://reviewsystem-zeta.vercel.app/jwt', { email }, {withCredentials: true})
                     .then(data => console.log(data.data))
 
             } else {
                 setUser(null)
-                axios.get('http://localhost:5000/logout', {withCredentials: true})
+                axios.get('https://reviewsystem-zeta.vercel.app/logout', {withCredentials: true})
                     .then(data => console.log(data.data))
             }
             setLoading(false)
