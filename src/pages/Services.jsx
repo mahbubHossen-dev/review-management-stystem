@@ -31,11 +31,8 @@ const Services = () => {
 
     return (
         <div>
-            <div>
-                <div className='flex flex-col gap-2 w-60 my-12'>
-                    <label className='text-gray-700 ' htmlFor='category'>
-                        Filter By Category
-                    </label>
+            <div className='max-w-6xl mx-auto'>
+                <div className='flex flex-col gap-2 w-60 my-12 mx-auto'>
                     <select
                         onChange={e => setFilter(e.target.value)}
                         name='category'
@@ -46,6 +43,12 @@ const Services = () => {
                         <option value='Marketing'>Marketing</option>
                         <option value='Food'>Food</option>
                         <option value='IT'>IT</option>
+                        <option value='Design'>Design</option>
+                        <option value='Photography'>Photography</option>
+                        <option value='Cleaning'>Cleaning</option>
+                        <option value='Health'>Health</option>
+                        <option value='Event'>Event</option>
+                        <option value='Education'>Education</option>
                     </select>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>

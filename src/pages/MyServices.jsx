@@ -36,10 +36,6 @@ const MyServices = () => {
     }, [axiosInstance, search, user.email])
 
 
-    // useEffect(() => {
-    //     fetchAllServicesData()
-    // }, [fetchAllServicesData])
-
     const handleUpdate = (id) => {
         document.getElementById('my_modal_4').showModal()
         fetch(`https://reviewsystem-zeta.vercel.app/details/${id}`)
@@ -114,9 +110,9 @@ const MyServices = () => {
     return (
         <div>
 
-            <div className="overflow-x-auto">
-                <div>
-                    <div className='w-80'>
+            <div className="overflow-x-auto  max-w-6xl mx-auto my-12">
+                <div className='flex justify-end mr-8 mb-2'>
+                    <div className='w-72 '>
                         <label className="input input-bordered flex items-center gap-2">
                             <input onChange={(e) => setSearch(e.target.value)} type="text" className="grow" placeholder="Search By Title" />
                             <svg
@@ -132,7 +128,7 @@ const MyServices = () => {
                         </label>
                     </div>
                 </div>
-                <table className="table">
+                <table className="table bg-gray-200">
                     {/* head */}
                     <thead>
                         <tr>

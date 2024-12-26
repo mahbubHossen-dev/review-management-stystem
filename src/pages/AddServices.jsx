@@ -7,11 +7,11 @@ import Swal from 'sweetalert2'
 import useAxiosSecure from '../hook/useAxiosSecure';
 
 const AddServices = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const [startDate, setStartDate] = useState(new Date())
     const axiosInstance = useAxiosSecure()
 
-    const handleAddService =async (e) => {
+    const handleAddService = async (e) => {
         e.preventDefault()
         const form = e.target;
         const photo = form.photo.value
@@ -24,16 +24,16 @@ const AddServices = () => {
         const email = form.email.value
         const description = form.description.value
         // const email = form.email.value
-        const service = {photo, title, company, website, category, price, deadline, email, description}
-        
+        const service = { photo, title, company, website, category, price, deadline, email, description }
+
         try {
-            const {data} = await axiosInstance.post('/services', service)
+            const { data } = await axiosInstance.post('/services', service)
             console.log(data)
-            if(data.insertedId){
+            if (data.insertedId) {
                 Swal.fire({
                     title: "Service added successfully!",
                     icon: "success"
-                  });
+                });
             }
         } catch (error) {
             console.log(error)
@@ -41,12 +41,13 @@ const AddServices = () => {
     }
 
     return (
-        <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
+        <div>
+            <div className="card bg-[#506585] w-full shrink-0 shadow-xl max-w-6xl mx-auto my-12">
             <form onSubmit={handleAddService} className="card-body ">
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                <div className=' grid grid-cols-1 lg:grid-cols-2 gap-4'>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Photo URL</span>
+                            <span className="label-text text-gray-300">Photo URL</span>
                         </label>
                         <input type="url" name='photo' placeholder="photo-url" className="input input-bordered" required />
                     </div>
@@ -54,7 +55,7 @@ const AddServices = () => {
                     {/* Title */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Title</span>
+                            <span className="label-text text-gray-300">Title</span>
                         </label>
                         <input type="text" name='title' placeholder="title" className="input input-bordered" required />
                     </div>
@@ -62,7 +63,7 @@ const AddServices = () => {
                     {/* Company Name */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Company Name</span>
+                            <span className="label-text text-gray-300">Company Name</span>
                         </label>
                         <input type="text" name='company' placeholder="company-name" className="input input-bordered" required />
                     </div>
@@ -70,64 +71,71 @@ const AddServices = () => {
                     {/* Website URL */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Website URL</span>
+                            <span className="label-text text-gray-300">Website URL</span>
                         </label>
                         <input type="url" name='website' placeholder="website-url" className="input input-bordered" required />
                     </div>
 
-                    {/* Category */}
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Category</span>
-                        </label>
-                        <input type="text" name='category' placeholder="category" className="input input-bordered" required />
-                    </div>
+
 
                     {/* Price */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Price</span>
+                            <span className="label-text text-gray-300">Price</span>
                         </label>
                         <input type="number" name='price' placeholder="price" className="input input-bordered" required />
                     </div>
 
                     {/* Added date (Not as input) */}
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Date</span>
-                        </label>
-                        <DatePicker 
-                        className='border p-2 rounded-md w-full'
-                        selected={startDate} 
-                        onChange={(date) => setStartDate(date)} />
-                    </div>
+
 
                     {/* userEmail (from auth) */}
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Email</span>
+                            <span className="label-text text-gray-300">Email</span>
                         </label>
-                        <input type="email" name='email' defaultValue={user.email} disabled={true} placeholder="email" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" required />
+                        <input type="email" name='email' defaultValue={user.email} disabled={true} placeholder="email" className="block w-full px-4 py-3  text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring" required />
+                    </div>
+
+
+                    {/* Description */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-gray-300">Description</span>
+                        </label>
+                        <textarea name='description' className=" textarea textarea-bordered" placeholder="Bio" required></textarea>
+                    </div>
+
+                    {/* Category */}
+                    <div className='flex flex-col gap-2 w-60'>
+                        <label className="label ">
+                            <span className="label-text text-gray-300">Category</span>
+                        </label>
+                        <select
+                            name='category'
+                            id='category'
+                            className='border p-2 rounded-md'
+                        >
+                            <option value='Filter By Category'>Select Category</option>
+                            <option value='Marketing'>Marketing</option>
+                            <option value='Food'>Food</option>
+                            <option value='IT'>IT</option>
+                            <option value='Design'>Design</option>
+                            <option value='Photography'>Photography</option>
+                            <option value='Cleaning'>Cleaning</option>
+                            <option value='Health'>Health</option>
+                            <option value='Event'>Event</option>
+                            <option value='Education'>Education</option>
+                        </select>
                     </div>
                 </div>
-
-
-
-                {/* Description */}
-
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Description</span>
-                    </label>
-                    <textarea name='description' className="w-full textarea textarea-bordered" placeholder="Bio" required></textarea>
-                </div>
-
 
                 <div className="form-control mt-6">
                     <button className="btn btn-primary w-full">Add Service</button>
                 </div>
 
             </form>
+        </div>
         </div>
     );
 };

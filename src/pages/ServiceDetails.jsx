@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReviewCard from '../components/ReviewCard';
 import DatePicker from 'react-datepicker';
 import { Rating } from '@smastrom/react-rating';
@@ -18,7 +18,7 @@ const ServiceDetails = () => {
     const [serviceReviews, setServiceReviews] = useState([])
     const [startDate, setStartDate] = useState(new Date())
     const [rating, setRating] = useState(3);
-    console.log(location)
+    console.log(service)
     useEffect(() => {
         const handleSeeDetails = async () => {
             try {
@@ -91,76 +91,100 @@ const ServiceDetails = () => {
     console.log(service.title)
     return (
         <div>
-            <div className="card card-compact bg-base-100 shadow-xl">
-                <h1>feature</h1>
-                <figure>
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                        alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title">{service.title}</h2>
-                    <p>{service.price}</p>
-                    <p>{service.description}</p>
-                    <p>Category: {service.category}</p>
-                    <div className="card-actions justify-end">
-                        {/* <Link to={`/addReview/${service._id}`} ><button className="btn">Add Review</button></Link> */}
-                        <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}>Add Review</button>
-                    </div>
-                </div>
-                {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <div className='max-w-6xl mx-auto py-12'>
+                <div className="card card-compact  bg-[#FFFFFF] shadow-xl">
 
-                <dialog id="my_modal_1" className="modal">
-                    <div className="modal-box mx-auto">
-                        <div className="mx-auto card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                            <form onSubmit={handleReview} className="card-body">
-                                {/* Text area */}
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Description</span>
-                                    </label>
-                                    <textarea name='description' className="w-full textarea textarea-bordered" placeholder="Bio" required></textarea>
+                    <div className='md:flex gap-4 items-center'>
+                        <figure>
+                            <img
+                                className='w-80 h-52'
+                                src={service.photo}
+                                alt="Shoes" />
+                        </figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{service.title}</h2>
+                            <p className='text-2xl font-medium'>Reviews {serviceReviews.length}</p>
+                            <p>${service.price}</p>
+                            <p>{service.description}</p>
+                            <p>{service.category} Category</p>
+                            <div className='flex gap-4 items-center'>
+                                <div className='border p-4 rounded-md'>
+                                    <Link to={service.website} target='_blank' className=''>
+                                        <p className='text-xl font-500'>{service.website}</p>
+                                        <p>visit here</p>
+                                    </Link>
                                 </div>
+                                <div className="card-actions justify-end ">
+                                    {/* <Link to={`/addReview/${service._id}`} ><button className="btn">Add Review</button></Link> */}
+                                    <button className="btn border w-full flex flex-col gap-2" onClick={() => document.getElementById('my_modal_1').showModal()}>
 
-                                {/* Rating */}
-                                <Rating
-                                    style={{ maxWidth: 180 }}
-                                    value={rating}
-                                    onChange={setRating}
-                                />
-
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Date</span>
-                                    </label>
-                                    <DatePicker
-                                        className='border p-2 rounded-md w-full'
-                                        selected={startDate}
-                                        disabled={true} />
+                                        Add Review
+                                    </button>
                                 </div>
-
-                                <div className="form-control mt-6">
-                                    <button className="btn btn-primary">Add Review</button>
-                                </div>
-                            </form>
-                            <div className="modal-action">
-                                <form method="dialog">
-                                    {/* if there is a button in form, it will close the modal */}
-                                    <button className="btn">Close</button>
-                                </form>
                             </div>
+
                         </div>
 
                     </div>
-                </dialog>
-            </div>
-            <div className='pt-12'>
-                <h1>{serviceReviews.length} reviews</h1>
-                <div className='space-y-4'>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            serviceReviews.map(review => <ReviewCard photoButton={true} key={review._id} prevTitle={false} review={review}></ReviewCard>)
-                        }
+                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+                    <dialog id="my_modal_1" className="modal">
+                        <div className="modal-box mx-auto">
+                            <div className="mx-auto card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                                <form onSubmit={handleReview} className="card-body">
+                                    {/* Text area */}
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Description</span>
+                                        </label>
+                                        <textarea name='description' className="w-full textarea textarea-bordered" placeholder="Bio" required></textarea>
+                                    </div>
+
+                                    {/* Rating */}
+                                    <Rating
+                                        style={{ maxWidth: 180 }}
+                                        value={rating}
+                                        onChange={setRating}
+                                    />
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Date</span>
+                                        </label>
+                                        <DatePicker
+                                            className='border p-2 rounded-md w-full'
+                                            selected={startDate}
+                                            disabled={true} />
+                                    </div>
+
+                                    <div className="form-control mt-6">
+                                        <button className="btn btn-primary">Add Review</button>
+                                    </div>
+                                </form>
+                                <div className="modal-action">
+                                    <form method="dialog">
+                                        {/* if there is a button in form, it will close the modal */}
+                                        <button className="btn">Close</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </dialog>
+                </div>
+
+                {/* reviews */}
+                <div className='pt-12'>
+
+                    {
+                        serviceReviews.length ? <h1 className='text-xl mb-4'>This Service All Reviews</h1> : <h1 className='text-xl mb-4'>There are no reviews</h1>
+                    }
+                    <div className='space-y-4'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                            {
+                                serviceReviews.map(review => <ReviewCard photoButton={true} key={review._id} prevTitle={false} review={review}></ReviewCard>)
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

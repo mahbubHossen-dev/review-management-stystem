@@ -7,13 +7,13 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     // console.log(user)
     const menuLinks = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/services'>Services</NavLink></li>
+        <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/'>Home</NavLink></li>
+        <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/services'>Services</NavLink></li>
         {
             user && <>
-                <li><NavLink to='/addServices'>Add Services</NavLink></li>
-                <li><NavLink to='/myServices'>My Services</NavLink></li>
-                <li><NavLink to='/myReviews'>My Reviews</NavLink></li>
+                <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/addServices'>Add Services</NavLink></li>
+                <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/myServices'>My Services</NavLink></li>
+                <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/myReviews'>My Reviews</NavLink></li>
             </>
         }
     </>
@@ -23,10 +23,10 @@ const Navbar = () => {
     }
 
     return (
-        <div>
-            <div className="navbar bg-base-100">
+        <div className='bg-[#1F2937] text-[#E5E7EB]'>
+            <div className="container md:max-w-7xl mx-auto navbar bg-[#1F2937]">
                 <div className="navbar-start">
-                    <div className="dropdown">
+                    <div className="dropdown z-10">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const Navbar = () => {
                             {menuLinks}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <a className="btn btn-ghost text-2xl italic">RateMate</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

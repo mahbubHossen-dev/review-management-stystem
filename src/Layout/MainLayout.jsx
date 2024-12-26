@@ -22,13 +22,12 @@ const MainLayout = () => {
 
     return (
         <div>
-            <div className='max-w-7xl mx-auto'>
+            <div className=''>
                 <Navbar />
             </div>
             <div className=''>
-                <div className='max-w-6xl mx-auto py-8'>
-                    <Outlet />
-                </div>
+            <Outlet />
+                
             </div>
             <Footer />
         </div>

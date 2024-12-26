@@ -25,7 +25,7 @@ const ReviewCard = ({ review, photoButton, prevTitle, handleDeleteReview, handle
                         />
                     </div>
                     {prevTitle && <p>{service_title}</p>}
-                    <p>{description}</p>
+                    <p className='text-[#6B7280]'>{description}</p>
                     <div className='flex justify-between items-center'>
                         <p>{format(new Date(deadline), 'P')}</p>
                         {
@@ -41,7 +41,7 @@ const ReviewCard = ({ review, photoButton, prevTitle, handleDeleteReview, handle
                         <div className="card-actions flex justify-between">
                             <div className='flex gap-2 items-center'>
                                 <img className='w-10 h-10 rounded-full' src={photo} alt="" />
-                                <p>{name}</p>
+                                <p className='text-[#111827] font-bold'>{name}</p>
                             </div>
                             
                         </div>

@@ -2,8 +2,10 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <div>
-            <span className="loading loading-spinner loading-lg"></span>
+        <div className='text-center'>
+            <div className='mx-auto py-20'>
+                <span className="loading loading-dots loading-lg"></span>
+            </div>
         </div>
     );
 };
