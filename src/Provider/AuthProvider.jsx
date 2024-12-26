@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
 
             } else {
                 setUser(null)
-                axios.get('https://reviewsystem-zeta.vercel.app/logout', {withCredentials: true})
+                axios.post('https://reviewsystem-zeta.vercel.app/logout', {}, {withCredentials: true})
                     .then(data => console.log(data.data))
             }
             setLoading(false)

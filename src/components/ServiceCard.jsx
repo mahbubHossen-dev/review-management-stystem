@@ -1,13 +1,21 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import * as motion from "motion/react-client"
 const ServiceCard = ({ service }) => {
-    const {_id, photo, title, company, website, category, price, deadline, email, description } = service || {}
+    const { _id, photo, title, company, website, category, price, deadline, email, description } = service || {}
 
 
     return (
-        <div className="card card-compact bg-base-100 shadow-xl">
+        <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            
+            transition={{
+                duration: 0.4,
+                scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+            }}
+            className="card card-compact bg-base-100 shadow-xl">
             <figure>
                 <img
                     className='h-44 rounded-lg'
@@ -22,7 +30,7 @@ const ServiceCard = ({ service }) => {
                     <Link to={`/service/details/${_id}`}><button className="btn btn-primary">See Details</button></Link>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

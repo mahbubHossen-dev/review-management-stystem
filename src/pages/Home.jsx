@@ -42,9 +42,11 @@ const Home = () => {
 
             <MeetPartners/>
 
+            <Achievements/>
+
             <WhyChoose/>
 
-            <Achievements/>
+            
         </div>
     );
 };

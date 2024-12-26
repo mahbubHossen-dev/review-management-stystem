@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
-
 const Slide = ({ image, text }) => {
+  
   return (
     <div
       className='w-full bg-center bg-cover md:h-[38rem] rounded-md'
@@ -15,7 +15,7 @@ const Slide = ({ image, text }) => {
             {text}
           </h1>
           <br />
-          
+
         </div>
       </div>
     </div>
