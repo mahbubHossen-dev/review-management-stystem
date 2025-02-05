@@ -22,7 +22,7 @@ The **Service Review Application System** is a full-stack platform designed to a
 - **JWT**: Token-based authentication.
 
 ## 📸 Screenshot
-<img src="https://i.ibb.co/QFrdZMJW/review-System.png" width="600">
+<img src="https://i.ibb.co/GfqgzwSN/review-System.png" width="600">
 
 ---
 
