@@ -27,7 +27,7 @@ const ServiceCard = ({ service }) => {
                 <p className='text-[#1F2937]'>${price}</p>
                 <p className='text-[#1F2937]'>{description}</p>
                 <div className="card-actions justify-end">
-                    <Link to={`/service/details/${_id}`}><button className="btn btn-primary">See Details</button></Link>
+                    <Link to={`/service/details/${_id}`}><button className="btn text-white/50 bg-[#1F2937]">See Details</button></Link>
                 </div>
             </div>
         </motion.div>
