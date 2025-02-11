@@ -32,7 +32,7 @@ const AddReview = () => {
         console.log(review)
 
         try {
-            const { data } = await axios.post('https://reviewsystem-zeta.vercel.app/addReview', review)
+            const { data } = await axios.post('http://localhost:5000/addReview', review)
             console.log(data)
             if (data.insertedId) {
                 Swal.fire({

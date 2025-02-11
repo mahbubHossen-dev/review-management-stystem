@@ -6,6 +6,9 @@ import { toast } from 'react-toastify';
 import MeetPartners from '../components/MeetPartners';
 import WhyChoose from '../components/WhyChoose';
 import Achievements from '../components/Achievements';
+import {
+    useQuery,
+} from '@tanstack/react-query'
 
 const Home = () => {
     const [limitedServices, setLimitedServices] = useState([])
@@ -13,9 +16,9 @@ const Home = () => {
     useEffect(() => {
         const fetchAllServicesData = async () => {
             try {
-                const { data } = await axios.get('https://reviewsystem-zeta.vercel.app/limitedServices')
+                const { data } = await axios.get('http://localhost:5000/limitedServices')
                 setLimitedServices(data)
-                
+
             } catch (error) {
                 toast.error(error)
             }
@@ -24,8 +27,6 @@ const Home = () => {
         fetchAllServicesData()
 
     }, [])
-
-    
 
     return (
         <div>
@@ -40,13 +41,13 @@ const Home = () => {
                 </div>
             </div>
 
-            <MeetPartners/>
+            <MeetPartners />
 
-            <Achievements/>
+            <Achievements />
 
-            <WhyChoose/>
+            <WhyChoose />
 
-            
+
         </div>
     );
 };
