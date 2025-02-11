@@ -16,7 +16,7 @@ import bgimg3 from '../assets/images/carousel3.avif'
 
 export default function Carousel() {
     return (
-        <div className='container px-6 py-10 mx-auto'>
+        <div className='container px-4 md:px-0 mx-auto pt-24'>
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -30,25 +30,25 @@ export default function Carousel() {
                 }}
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className='mySwiper rounded-md'
+                className='mySwiper rounded-md h-[70vh] object-cover'
             >
                 <SwiperSlide>
                     <Slide
-                        className="rounded-md"
+                        className="rounded-md  h-full object-cover"
                         image={bgimg1}
                         text='Find the Best Services Near You'
                     />
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide
-                        className="rounded-md"
+                        className="rounded-md  h-full object-cover"
                         image={bgimg2}
                         text='Share Your Experience and Help Others'
                     />
                 </SwiperSlide>
                 <SwiperSlide>
                     <Slide
-                        className="rounded-md"
+                        className="rounded-md h-full object-cover" 
                         image={bgimg3}
                         text='Join Our Community Today!'
                     />

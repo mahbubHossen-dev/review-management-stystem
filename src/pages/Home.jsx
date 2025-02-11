@@ -31,9 +31,9 @@ const Home = () => {
         <div>
             <BannerSlider></BannerSlider>
 
-            <div className='container mx-auto'>
-                <h1 className='text-3xl font-medium my-6'>Our Services</h1>
-                <div className='grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-12'>
+            <div className='container mx-auto mt-24'>
+                <h1 className='text-3xl font-medium my-6 text-center'>Our Services</h1>
+                <div className='grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-12'>
                     {
                         limitedServices.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                     }

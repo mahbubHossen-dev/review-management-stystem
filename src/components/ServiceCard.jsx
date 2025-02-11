@@ -18,16 +18,15 @@ const ServiceCard = ({ service }) => {
             className="card card-compact bg-base-100 shadow-xl">
             <figure>
                 <img
-                    className='h-44 rounded-lg'
+                    className='h-44 w-full rounded-lg'
                     src={photo}
                     alt="Shoes" />
             </figure>
             <div className="card-body">
                 <h2 className="card-title text-[#374151]">{title}</h2>
-                <p className='text-[#1F2937]'>${price}</p>
                 <p className='text-[#1F2937]'>{description}</p>
                 <div className="card-actions justify-end">
-                    <Link to={`/service/details/${_id}`}><button className="btn text-white/50 bg-[#1F2937]">See Details</button></Link>
+                    <Link to={`/service/details/${_id}`}><button className="btn text-white/80 bg-[#1F2937]">See Details</button></Link>
                 </div>
             </div>
         </motion.div>

@@ -9,7 +9,7 @@ const MeetPartners = () => {
     return (
         <div>
             <h1 className='text-center font-medium text-2xl mb-6 mt-12'>Meet Our Partners</h1>
-            <div className='container grid grid-cols-1 md:grid-cols-3 gap-12 container mx-auto'>
+            <div className='container grid grid-cols-1 md:grid-cols-3 gap-12 mx-auto'>
                 <div className='text-center'>
                     <img className='w-40 h-40 rounded-full mx-auto' src={partner1} alt="" />
                     <h3 className='text-lg font-medium'>Tommaso Zerbi</h3>

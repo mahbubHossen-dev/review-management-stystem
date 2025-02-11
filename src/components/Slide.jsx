@@ -14,9 +14,9 @@ const Slide = ({ image, text }) => {
         <div className='text-center'>
           <motion.h1 
           initial={{ y: 40 }}
-          animate={{ y: -40 }}
+          animate={{ y: -62 }}
           transition={{ duration: 1 }}
-          className='text-3xl font-semibold text-white lg:text-4xl'>
+          className=' text-white lg:text-4xl  text-4xl font-bold bg-black/50 p-4 rounded-lg'>
             {text}
           </motion.h1>
           <br />
