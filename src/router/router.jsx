@@ -11,6 +11,7 @@ import PrivateLayout from "../Layout/PrivateLayout";
 import ServiceDetails from "../pages/ServiceDetails";
 import AddReview from "../pages/AddReview";
 import Error from "../pages/Error";
+import AllReviews from "../pages/AllReviews";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services />
+            },
+            {
+                path: '/reviews',
+                element: <AllReviews></AllReviews>
             },
             {
                 path: '/addServices',

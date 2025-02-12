@@ -12,9 +12,13 @@ const Navbar = () => {
             user && <>
                 <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/addServices'>Add Services</NavLink></li>
                 <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/myServices'>My Services</NavLink></li>
-                <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/myReviews'>My Reviews</NavLink></li>
+                
             </>
         }
+        {
+            user ? <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/myReviews'>My Reviews</NavLink></li> : <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/reviews'>Reviews</NavLink></li>
+        }
+
     </>
 
     const handleLogout = () => {
@@ -65,8 +69,8 @@ const Navbar = () => {
                             </div>
                             :
                             <div className='flex items-center gap-3'>
-                                <Link to='/register' className="btn">Register</Link>
-                                <Link to='/login' className="btn">Login</Link>
+                                <Link to='/register' className="border-b">Register</Link>
+                                <Link to='/login' className="py-2 px-4 rounded-md font-medium bg-white text-[#1F2937]">Login</Link>
                             </div>
                     }
 

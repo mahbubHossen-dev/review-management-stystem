@@ -10,7 +10,7 @@ const Services = () => {
     const [filter, setFilter] = useState("")
     const [sort, setSort] = useState("")
 
-    const { isPending, error, data:allServices=[] } = useQuery({
+    const { isPending, data:allServices=[] } = useQuery({
         queryKey: ['repoData', filter, sort],
         queryFn: async () => {
             const {data} = await axios.get(`http://localhost:5000/all-services?filter=${filter}&sort=${sort}`)

@@ -24,7 +24,7 @@ const MyReviews = () => {
             try {
                 const { data } = await axiosInstance.get(`/all-review?email=${user?.email}`)
                 setReviews(data)
-                
+
             } catch (error) {
                 toast.error(error)
             }
@@ -76,12 +76,12 @@ const MyReviews = () => {
         const review = { description, reviewRating }
         try {
             const { data } = await axiosInstance.patch(`/reviewUpdate/${id}`, review)
-            
+
             if (data.modifiedCount) {
                 try {
                     const { data } = await axiosInstance.get(`/all-review?email=${user?.email}`)
                     setReviews(data)
-                    
+
                 } catch (error) {
                     toast.error(error)
                 }
@@ -95,16 +95,20 @@ const MyReviews = () => {
 
     return (
         <div className='bg-base-300'>
-            <div className='space-y-3 max-w-2xl mx-auto py-12'>
+            <div className='space-y-3 max-w-2xl mx-auto pt-24 pb-6 min-h-[calc(100vh-220px)]'>
                 {
-                    reviews.map(review => <ReviewCard
-                        handleDeleteReview={handleDeleteReview}
-                        prevTitle={true} photoButton={false}
-                        key={review._id}
-                        review={review}
-                        handleUpdateReview={handleUpdateReview}
-                        setRating={setRating}
-                    ></ReviewCard>)
+                    reviews.length ?<div>
+                    {
+                        reviews.map(review => <ReviewCard
+                            handleDeleteReview={handleDeleteReview}
+                            prevTitle={true} photoButton={false}
+                            key={review._id}
+                            review={review}
+                            handleUpdateReview={handleUpdateReview}
+                            setRating={setRating}
+                        ></ReviewCard>)
+                    }
+                </div> : <h3 className='text-center text-2xl'>No Review</h3>
                 }
             </div>
             <dialog id="my_modal_1" className="modal">

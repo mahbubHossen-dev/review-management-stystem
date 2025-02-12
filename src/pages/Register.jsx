@@ -64,32 +64,32 @@ const Register = () => {
     }
 
     return (
-        <div className="hero bg-base-200 min-h-screen py-12">
+        <div className="hero bg-base-200 min-h-screen pt-24 pb-6">
             <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
-                <h1 className='text-3xl font-bold text-center'>Register now</h1>
+                <h1 className='text-2xl font-bold text-center -mb-7 pt-4'>Register now</h1>
                 <form onSubmit={handleRegister} className="card-body">
-                    <div className="form-control">
+                    <div className="form-control -mb-2">
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
                         <input type="text" name='name' placeholder="name" className="input input-bordered" required />
                     </div>
 
-                    <div className="form-control">
+                    <div className="form-control -mb-2">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
                         <input type="email" name='email' placeholder="email" className="input input-bordered" required />
                     </div>
 
-                    <div className="form-control">
+                    <div className="form-control -mb-2">
                         <label className="label">
                             <span className="label-text">Photo URL</span>
                         </label>
                         <input type="url" name='photo' placeholder="photo-url" className="input input-bordered" required />
                     </div>
 
-                    <div className="form-control">
+                    <div className="form-control -mb-2">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
@@ -102,7 +102,7 @@ const Register = () => {
 
                 </form>
                 <div className="form-control px-8">
-                    <button onClick={handleGoogleLogin} className="btn text-white bg-[#3B82F6]"><FaGoogle /> Google</button>
+                    <button onClick={handleGoogleLogin} className="btn -mt-4 text-white bg-[#3B82F6]"><FaGoogle /> Google</button>
                 </div>
                 <p className='py-6 text-center'>Already have an account? <Link to='/login' className='border-b-2 font-bold'>Login here</Link></p>
 

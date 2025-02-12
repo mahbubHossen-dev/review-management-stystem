@@ -5,7 +5,7 @@ const Slide = ({ image, text }) => {
   
   return (
     <div
-      className='w-full bg-center bg-cover md:h-[38rem] rounded-md'
+      className='w-full h-32 bg-center bg-cover md:h-[38rem] rounded-md'
       style={{
         backgroundImage: `url(${image})`,
       }}
@@ -16,7 +16,7 @@ const Slide = ({ image, text }) => {
           initial={{ y: 40 }}
           animate={{ y: -62 }}
           transition={{ duration: 1 }}
-          className=' text-white lg:text-4xl  text-4xl font-bold bg-black/50 p-4 rounded-lg'>
+          className=' text-white lg:text-4xl  text-4xl font-bold bg-black/50 p-4 rounded-lg hidden md:block'>
             {text}
           </motion.h1>
           <br />

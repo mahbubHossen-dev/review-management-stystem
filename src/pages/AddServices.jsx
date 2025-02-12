@@ -42,8 +42,8 @@ const AddServices = () => {
     }
 
     return (
-        <div>
-            <div className="card bg-[#506585] w-full shrink-0 shadow-xl container mx-auto my-12">
+        <div className='pt-24 pb-6'>
+            <div className="card bg-[#506585] w-full shrink-0 shadow-xl container mx-auto ">
             <form onSubmit={handleAddService} className="card-body ">
                 <div className=' grid grid-cols-1 lg:grid-cols-2 gap-4'>
                     <div className="form-control">
@@ -132,7 +132,7 @@ const AddServices = () => {
                 </div>
 
                 <div className="form-control mt-6">
-                    <button className="btn btn-primary w-full">Add Service</button>
+                    <button className="btn bg-[#1F2937] outline-none border-none text-white hover:bg-white hover:text-[#1F2937] w-full">Add Service</button>
                 </div>
 
             </form>

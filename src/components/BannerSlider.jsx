@@ -30,7 +30,7 @@ export default function Carousel() {
                 }}
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className='mySwiper rounded-md h-[70vh] object-cover'
+                className='mySwiper rounded-md md:h-[70vh] object-cover'
             >
                 <SwiperSlide>
                     <Slide
