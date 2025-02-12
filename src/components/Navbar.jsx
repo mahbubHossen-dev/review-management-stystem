@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
+import moonThemeIcon from '../assets/images/moon_icon.png'
+import sunIcon from '../assets/images/sun_icon.png'
 
-const Navbar = () => {
+const Navbar = ({ isDarkMood, setIsDarkMood, scrollToSection }) => {
     const { user, logOut } = useContext(AuthContext)
     const menuLinks = <>
         <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/'>Home</NavLink></li>
@@ -12,7 +14,7 @@ const Navbar = () => {
             user && <>
                 <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/addServices'>Add Services</NavLink></li>
                 <li className='hover:bg-[#3B82F6] hover:rounded-md'><NavLink to='/myServices'>My Services</NavLink></li>
-                
+
             </>
         }
         {
@@ -58,6 +60,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    <img onClick={() => setIsDarkMood(!isDarkMood)} src={isDarkMood ? sunIcon : moonThemeIcon} alt="" className='w-6 cursor-pointer mr-6' />
                     {
                         user ?
                             <div className='flex items-center gap-4'>

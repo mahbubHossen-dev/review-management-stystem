@@ -10,9 +10,9 @@ import {
     useQuery,
 } from '@tanstack/react-query'
 
-const Home = () => {
+const Home = ({isDarkMood}) => {
     const [limitedServices, setLimitedServices] = useState([])
-
+    console.log(isDarkMood)
     useEffect(() => {
         const fetchAllServicesData = async () => {
             try {
@@ -36,7 +36,7 @@ const Home = () => {
                 <h1 className='text-3xl font-medium my-6 text-center'>Our Services</h1>
                 <div className='grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-12'>
                     {
-                        limitedServices.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
+                        limitedServices.map(service => <ServiceCard isDarkMood={isDarkMood} key={service._id} service={service}></ServiceCard>)
                     }
                 </div>
             </div>

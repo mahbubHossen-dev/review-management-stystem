@@ -1,9 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 
 const MainLayout = () => {
+
+    const [isDarkMood, setIsDarkMood] = useState(false)
+
+
+    const scrollToSection = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({
+                behavior: "smooth",
+                block: "center", 
+            });
+        }
+    };
+
+
+    useEffect(() => {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('prefers-color-scheme: dark').matches)) {
+            setIsDarkMood(true)
+        } else {
+            setIsDarkMood(false)
+        }
+    }, [setIsDarkMood])
+
+    useEffect(() => {
+        if (isDarkMood) {
+            document.documentElement.classList.add('dark')
+            localStorage.theme = 'dark'
+        } else {
+            document.documentElement.classList.remove('dark')
+            localStorage.theme = ''
+        }
+    }, [isDarkMood])
 
     const location = useLocation()
     
@@ -19,14 +51,16 @@ const MainLayout = () => {
         }
          document.title = titles[location.pathname] || 'RateMate'
     }, [location.pathname])
+    
+    // console.log(isDarkMood)
 
     return (
-        <div>
+        <div className={`${isDarkMood ? 'dark:bg-[#0F172A] text-white' : ''}`}>
             <div className=''>
-                <Navbar />
+                <Navbar isDarkMood={isDarkMood} setIsDarkMood={setIsDarkMood} scrollToSection={scrollToSection}/>
             </div>
             <div className=''>
-            <Outlet />
+            <Outlet isDarkMood={isDarkMood}/>
                 
             </div>
             <Footer />

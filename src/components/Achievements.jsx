@@ -12,13 +12,13 @@ const Achievements = () => {
 
     return (
         <div>
-            <div className='bg-[#e9e9d6] rounded-md container mx-auto py-20 mb-16 md:mt-24'>
+            <div className='bg-[#e9e9d6] rounded-md container mx-auto py-20 mb-16 md:mt-24 dark:bg-gray-600'>
                 <div className=' w-2/3 mx-auto md:p-12'>
                     <div>
-                        <h1 className='text-3xl font-medium text-center pb-8'>Our Achievements</h1>
+                        <h1 className='text-3xl font-medium text-center pb-8 dark:text-white/90'>Our Achievements</h1>
                     </div>
                     <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                        <div className='flex gap-3 bg-white rounded-3xl p-12  shadow-md'>
+                        <div className='flex gap-3 bg-white rounded-3xl p-12  shadow-md dark:bg-[#1F2937]'>
                             <div>
                                 <CiTrophy className='text-5xl text-orange-500' />
                             </div>
@@ -27,7 +27,7 @@ const Achievements = () => {
                                 <p className='text-sm ml-1'>USERS</p>
                             </div>
                         </div>
-                        <div className='flex gap-3 bg-white rounded-3xl p-12 shadow-md'>
+                        <div className='flex gap-3 bg-white rounded-3xl p-12 shadow-md dark:bg-[#1F2937]'>
                             <div>
                                 <MdMiscellaneousServices className='text-5xl text-orange-500' />
                             </div>
@@ -36,7 +36,7 @@ const Achievements = () => {
                                 <p className='text-sm ml-1'>Services</p>
                             </div>
                         </div>
-                        <div className='flex gap-3 bg-white rounded-3xl p-12 shadow-md'>
+                        <div className='flex gap-3 bg-white rounded-3xl p-12 shadow-md dark:bg-[#1F2937]'>
                             <div>
                                 <MdRateReview className='text-5xl text-orange-500' />
                             </div>
