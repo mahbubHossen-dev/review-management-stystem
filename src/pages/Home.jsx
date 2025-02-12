@@ -32,7 +32,7 @@ const Home = () => {
         <div>
             <BannerSlider></BannerSlider>
 
-            <div className='container mx-auto mt-24'>
+            <div className='container mx-auto mt-12 md:mt-24'>
                 <h1 className='text-3xl font-medium my-6 text-center'>Our Services</h1>
                 <div className='grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-12'>
                     {

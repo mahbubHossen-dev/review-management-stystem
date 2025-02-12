@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ServiceCard from '../components/ServiceCard';
 import { toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
+import Loading from './../components/Loading';
 
 const Services = () => {
 
@@ -20,7 +21,7 @@ const Services = () => {
     console.log(sort)
 
     if(isPending){
-        return <span className="mt-24 mx-auto text-center loading loading-spinner loading-lg"></span>
+        return <Loading></Loading>
     }
 
 
