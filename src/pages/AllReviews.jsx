@@ -21,7 +21,7 @@ const AllReviews = () => {
 
     return (
         <div className='pt-24 pb-6 '>
-            <div className='container mx-auto min-h-[calc(100vh-500px)'>
+            <div className='container mx-auto min-h-[calc(100vh-220px)]'>
                 <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ]">
                     {
                         reviews.map(review => <div key={review._id} className="card rounded-md bg-gray-300 shadow-xl">

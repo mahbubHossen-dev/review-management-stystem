@@ -91,12 +91,12 @@ const ServiceDetails = () => {
 
     return (
         <div>
-            <div className='container mx-auto py-12'>
+            <div className='container mx-auto pt-24 pb-6'>
                 <div className="card card-compact  bg-[#FFFFFF] shadow-xl">
-                    <div className='md:flex gap-4 items-center'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-center'>
                         <figure>
                             <img
-                                className='w-80 h-52'
+                                className=''
                                 src={service.photo}
                                 alt="Shoes" />
                         </figure>
@@ -107,7 +107,7 @@ const ServiceDetails = () => {
                             <p>{service.description}</p>
                             <p>{service.category} Category</p>
                             <div className='md:flex gap-4 items-center'>
-                                <div className='border p-4 rounded-md'>
+                                <div className='border py-2 px-2 rounded-md'>
                                     <Link to={service.website} target='_blank' className=''>
                                         <p className='text-xl font-500'>{service.website}</p>
                                         <p>visit here</p>
@@ -115,7 +115,7 @@ const ServiceDetails = () => {
                                 </div>
                                 <div className="card-actions justify-end ">
                                     
-                                    <button className="btn border w-full flex flex-col gap-2" onClick={() => document.getElementById('my_modal_1').showModal()}>
+                                    <button className="btn border w-full border-[#1F2937] flex flex-col gap-2" onClick={() => document.getElementById('my_modal_1').showModal()}>
 
                                         Add Review
                                     </button>
@@ -146,13 +146,13 @@ const ServiceDetails = () => {
                                     
 
                                     <div className="form-control mt-6">
-                                        <button className="btn btn-primary">Add Review</button>
+                                        <button className="btn bg-white">Add Review</button>
                                     </div>
                                 </form>
                                 <div className="modal-action">
                                     <form method="dialog">
                                         {/* if there is a button in form, it will close the modal */}
-                                        <button className="btn">Close</button>
+                                        <button className="btn bg-primary text-white">Close</button>
                                     </form>
                                 </div>
                             </div>
