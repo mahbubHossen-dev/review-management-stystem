@@ -13,7 +13,7 @@ const Services = () => {
     const { isPending, data:allServices=[] } = useQuery({
         queryKey: ['repoData', filter, sort],
         queryFn: async () => {
-            const {data} = await axios.get(`http://localhost:5000/all-services?filter=${filter}&sort=${sort}`)
+            const {data} = await axios.get(`https://review-management-2.vercel.app/all-services?filter=${filter}&sort=${sort}`)
             return data 
         }
     })
@@ -29,13 +29,13 @@ const Services = () => {
 
     return (
         <div>
-            <div className='container mx-auto pt-14'>
+            <div className='container mx-auto pt-14 pb-8'>
                 <div className='flex flex-col md:flex-row md:justify-between gap-2 mt-12 mb-8 '>
                     <select
                         onChange={e => setFilter(e.target.value)}
                         name='category'
                         id='category'
-                        className='border p-2 rounded-md'
+                        className='border p-2 rounded-md dark:border-[#374151] dark:bg-[#374151]'
                     >
                         <option value='Filter By Category'>Filter By Category</option>
                         <option value='Marketing'>Marketing</option>
@@ -54,7 +54,7 @@ const Services = () => {
                         onChange={e => setSort(e.target.value)}
                         name='sort'
                         id='sort'
-                        className='border p-2 rounded-md'
+                        className='border p-2 rounded-md dark:border-[#374151] dark:bg-[#374151]'
                         defaultValue={'Sort by Price'}
                     >
                         <option value='Sort by Price' disabled>Sort by Price</option>

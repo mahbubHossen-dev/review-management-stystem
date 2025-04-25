@@ -16,7 +16,7 @@ const Home = ({isDarkMood}) => {
     useEffect(() => {
         const fetchAllServicesData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/limitedServices')
+                const { data } = await axios.get('https://review-management-2.vercel.app/limitedServices')
                 setLimitedServices(data)
 
             } catch (error) {

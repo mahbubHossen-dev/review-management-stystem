@@ -94,10 +94,10 @@ const MyReviews = () => {
     }
 
     return (
-        <div className='bg-base-300'>
-            <div className='space-y-3 max-w-2xl mx-auto pt-24 pb-6 min-h-[calc(100vh-220px)]'>
+        <div className='bg-base-300 dark:bg-[#0F172A]'>
+            <div className='space-y-3 max-w-5xl mx-auto pt-24 pb-6 min-h-[calc(100vh-220px)]'>
                 {
-                    reviews.length ?<div>
+                    reviews.length ?<div className='grid md:grid-cols-2 gap-4'>
                     {
                         reviews.map(review => <ReviewCard
                             handleDeleteReview={handleDeleteReview}

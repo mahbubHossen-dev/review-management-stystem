@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import DatePicker from 'react-datepicker';
+import { useContext, useState } from 'react';
+// import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
@@ -32,7 +32,7 @@ const AddReview = () => {
         console.log(review)
 
         try {
-            const { data } = await axios.post('http://localhost:5000/addReview', review)
+            const { data } = await axios.post('https://review-management-2.vercel.app/addReview', review)
             console.log(data)
             if (data.insertedId) {
                 Swal.fire({

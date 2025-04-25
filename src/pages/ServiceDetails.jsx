@@ -23,7 +23,7 @@ const ServiceDetails = () => {
     useEffect(() => {
         const handleSeeDetails = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/details/${id}`)
+                const { data } = await axios.get(`https://review-management-2.vercel.app/details/${id}`)
                 setService(data)
                 
             } catch (error) {
@@ -39,7 +39,7 @@ const ServiceDetails = () => {
     useEffect(() => {
         const handleSeeDetails = async () => {
             try {
-                const { data } = await axios.get(`http://localhost:5000/reviews/${id}`)
+                const { data } = await axios.get(`https://review-management-2.vercel.app/reviews/${id}`)
                 setServiceReviews(data)
                 
             } catch (error) {
@@ -64,7 +64,7 @@ const ServiceDetails = () => {
         
 
         try {
-            const { data } = await axios.post('http://localhost:5000/addReview', review)
+            const { data } = await axios.post('https://review-management-2.vercel.app/addReview', review)
             
             if (data.insertedId) {
                 Swal.fire({
@@ -76,7 +76,7 @@ const ServiceDetails = () => {
                 document.getElementById('my_modal_1').close()
 
                 try {
-                    const { data } = await axios.get(`http://localhost:5000/reviews/${id}`)
+                    const { data } = await axios.get(`https://review-management-2.vercel.app/reviews/${id}`)
                     setServiceReviews(data)
                     
                 } catch (error) {
@@ -92,7 +92,7 @@ const ServiceDetails = () => {
     return (
         <div>
             <div className='container mx-auto pt-24 pb-6'>
-                <div className="card card-compact  bg-[#FFFFFF] shadow-xl">
+                <div className="card card-compact  bg-[#FFFFFF] shadow-xl dark:bg-[#1F2937]">
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 items-center'>
                         <figure>
                             <img
@@ -165,7 +165,7 @@ const ServiceDetails = () => {
                 <div className='pt-12'>
 
                     {
-                        serviceReviews.length ? <h1 className='text-xl mb-4'>This Service All Reviews</h1> : <h1 className='text-xl mb-4'>There are no reviews</h1>
+                        serviceReviews.length ? <h1 className='text-xl mb-4'>This Service {serviceReviews.length} Reviews </h1> : <h1 className='text-xl mb-4'>There are no reviews</h1>
                     }
                     <div className='space-y-4'>
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>

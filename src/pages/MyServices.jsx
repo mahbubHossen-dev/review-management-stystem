@@ -35,7 +35,7 @@ const MyServices = () => {
 
     const handleUpdate = (id) => {
         document.getElementById('my_modal_4').showModal()
-        fetch(`http://localhost:5000/details/${id}`)
+        fetch(`https://review-management-2.vercel.app/details/${id}`)
             .then(res => res.json())
             .then(data => setSingleService(data))
     }
@@ -106,13 +106,12 @@ const MyServices = () => {
 
     return (
         <div>
-            <div className='pt-24 pb-6 min-h-[calc(100vh-220px)]'>
-                {
-                    myServices.length ? <div className={`overflow-x-auto  container mx-auto `}>
+            <div className='pt-24 pb-6 min-h-[calc(100vh-220px)] '>
+                <div className={`overflow-x-auto  container mx-auto `}>
                     <div className='flex justify-end mr-8 mb-2'>
                         <div className='w-72 '>
                             <label className="input input-bordered flex items-center gap-2">
-                                <input onChange={(e) => setSearch(e.target.value)} type="text" className="grow" placeholder="Search By Title" />
+                                <input onChange={(e) => setSearch(e.target.value)} type="text" className="grow dark:text-[#374151] dark:placeholder:text-[#374151]" placeholder="Search By Title" />
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 16 16"
@@ -126,10 +125,11 @@ const MyServices = () => {
                             </label>
                         </div>
                     </div>
-                    <table className="table bg-gray-200">
+                    {
+                        myServices.length ? <><table className="table bg-gray-200 dark:bg-transparent dark:border-[#374151]">
                         {/* head */}
                         <thead>
-                            <tr>
+                            <tr className='dark:text-white/90'>
                                 <th></th>
                                 <td>Title</td>
                                 <td>company</td>
@@ -281,9 +281,9 @@ const MyServices = () => {
 
                             </div>
                         </dialog>
-                    </div>
-                </div>: <h3 className='text-2xl font-medium text-center'>I haven&apos;t added any services.</h3>
-                }
+                    </div> </>: <h3 className='text-2xl font-medium text-center'>I haven&apos;t added any services.</h3>
+                    }
+                </div>
             </div>
 
         </div>

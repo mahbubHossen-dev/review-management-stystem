@@ -9,7 +9,7 @@ const AllReviews = () => {
     const { isPending, data: reviews = [] } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:5000/all-reviews`)
+            const { data } = await axios.get(`https://review-management-2.vercel.app/all-reviews`)
             return data
         }
     })
